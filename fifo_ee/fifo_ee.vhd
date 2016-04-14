@@ -12,11 +12,11 @@ port(
   ;rst          : in std_logic
   ;datain       : in std_logic_vector(C_DATA_WIDTH-1 downto 0)
   ;dataout      : out std_logic_vector(C_DATA_WIDTH-1 downto 0) := (others => '0')
-  ;wr_en : in std_logic
-  ;rd_en : in std_logic
-  ;full : out std_logic
-  ;empty : out std_logic
-  ;data_count : out std_logic_vector(C_DEPTH - 1 downto 0)
+  ;wr_en        : in std_logic
+  ;rd_en        : in std_logic
+  ;full         : out std_logic
+  ;empty        : out std_logic
+  ;data_count   : out std_logic_vector(C_DEPTH - 1 downto 0)
   );
 end entity;
 
@@ -64,13 +64,14 @@ architecture behavioral of FIFO_ee is
             if rst = '1' then
                 data_count_var := (others => '0');
             else
-                if wr_en = '1' then
+                if wr_en = '1' and full_i = '0' then
                     data_count_var := data_count_var + 1;
                 end if;
                 
-                if rd_en = '1' then
+                if rd_en = '1' and empty_i = '0' then
                     data_count_var := data_count_var - 1;
                 end if;
+
             end if;
             data_count <= std_logic_vector(data_count_var);
         end if;
