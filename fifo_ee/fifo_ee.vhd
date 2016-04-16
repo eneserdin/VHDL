@@ -63,6 +63,7 @@ architecture behavioral of FIFO_ee is
         if rising_edge(clk) then
             if rst = '1' then
                 data_count_var := (others => '0');
+                data_count <= (others => '0');
             else
                 if wr_en = '1' and full_i = '0' then
                     data_count_var := data_count_var + 1;
