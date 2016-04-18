@@ -41,8 +41,8 @@ uut : entity work.async_fifo_ee port map(
     );
 
 
-wr_clk <= not wr_clk after 5 ns;
-rd_clk <= not rd_clk after 13 ns;
+wr_clk <= not wr_clk after 4 ns;
+rd_clk <= not rd_clk after 3.5 ns;
 
 arst <= '1','0' after 50 ns;
 
